@@ -1,0 +1,6 @@
+langchain
+langchain-openai
+fastapi
+fastapi[standard]
+python-dotenv
+requests
