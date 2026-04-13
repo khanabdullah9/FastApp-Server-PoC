@@ -12,3 +12,6 @@ logging.basicConfig(
 
 def log_error(err_msg: str):
     logging.error(err_msg)
+
+def log_info(info_msg: str):
+    logging.info(info_msg)
