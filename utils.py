@@ -8,6 +8,7 @@ logging.basicConfig(
     format="{asctime} - {levelname} - {message}",
     style="{",
     datefmt="%Y-%m-%d %H:%M",
+    level="INFO"
 )
 
 def log_error(err_msg: str):

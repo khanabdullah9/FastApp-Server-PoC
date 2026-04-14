@@ -5,6 +5,8 @@ from llm import chain, form_layout
 import json
 from utils import log_error, log_info
 
+from pydantic import BaseModel
+
 api = FastAPI()
 
 api.add_middleware(
@@ -19,23 +21,27 @@ api.add_middleware(
 def root():
     return "Server is running!"
 
-@api.get("/llm/{prompt}")
-def get_layout(prompt: str):
+class Prompt(BaseModel):
+    text: str
+
+@api.post("/generate/")
+def generate(prompt: Prompt):
+    log_info("Returning pre generated json")
     with open("pre_gen.json", "r") as f:
         return json.load(f)
 
-# @api.get("/llm/{prompt}")
-# def get_layout(prompt: str):
-#     log_info(f"Prompt received: {prompt}")
-#     try:
-#         response = chain.invoke({
-#             "form_layout": form_layout,
-#             "user_prompt": prompt
-#         })
-#         log_info("Response generated")
-#         ai_message = response["messages"][1].content
-#         data_dict = json.loads(ai_message.replace("json","").replace("```",""))
-#         log_info("Content ready to be returned")
-#         return json.dumps(data_dict)
-#     except Exception as err:
-#         log_error(str(err))
+@api.post("/generate/")
+def generate(prompt: Prompt):
+    log_info(f"Prompt received: {prompt.text}")
+    try:
+        response = chain.invoke({
+            "form_layout": form_layout,
+            "user_prompt": prompt.text
+        })
+        log_info("Response generated")
+        ai_message = response["messages"][1].content
+        data_dict = json.loads(ai_message.replace("json","").replace("```",""))
+        log_info("Content ready to be returned")
+        return json.dumps(data_dict)
+    except Exception as err:
+        log_error(str(err))
