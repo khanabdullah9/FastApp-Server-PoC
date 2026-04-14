@@ -27,14 +27,14 @@ FastApp is a specialized FastAPI backend that leverages the power of Large Langu
 ## 🚀 Quick Start
 
 ### 1. Prerequisites
-- Python 3.10+
+- Python 3.11+
 - OpenAI API Key
 
 ### 2. Installation
 Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/yourusername/FormForge-AI.git
-cd FormForge-AI
+git clone https://github.com/khanabdullah9/FastApp-Server-PoC.git
+cd FastApp-Server-PoC
 pip install -r requirements.txt
 ```
 
@@ -46,10 +46,6 @@ OPENAI_API_KEY=your_api_key_here
 
 ### 4. Run the Server
 ```bash
-python main.py
-```
-Or using FastAPI CLI:
-```bash
 fastapi dev main.py
 ```
 
@@ -57,11 +53,16 @@ fastapi dev main.py
 
 ## 📖 Usage
 
-Send a GET request to the `/llm/{prompt}` endpoint with your form description.
+Send a POST request to the `/generate/` endpoint.
 
 **Example Request:**
 ```http
-GET http://localhost:8000/llm/Create a form to collect student details for admission
+POST http://localhost:8000/generate/ 
+
+# form body
+# {
+#   "text" : "Create a form to collect student's data for admission"
+# }
 ```
 
 **Example Response:**
