@@ -1,5 +1,6 @@
 import logging
 import os
+import json
 
 # 1. Setup the Root Logger to a high level (to silence the server/libraries)
 logging.basicConfig(level=logging.WARNING) 
@@ -21,3 +22,16 @@ def log_error(err_msg: str):
 
 def log_info(info_msg: str):
     logger.info(info_msg)
+
+def get_ollama_conf(key_name = ""):
+    if not os.path.exists("app_config.json"):
+        return {}
+
+    with open("app_config.json","r") as f:
+        data = json.load(f)
+    if not data:
+        return {}
+    
+    if key_name and key_name in data["Ollama"]:
+        return data["Ollama"][key_name]
+    return data["Ollama"]
