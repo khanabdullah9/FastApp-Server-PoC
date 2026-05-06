@@ -1,27 +1,4 @@
 {
-    "Row1": [
-        {
-            "Type": "text",
-            "Label": "First Name",
-            "Name": "first_name",
-            "Placeholder": "Abdullah",
-            "Required": true
-        },
-        {
-            "Type": "text",
-            "Label": "Father's Name",
-            "Name": "father_name",
-            "Placeholder": "Rashid",
-            "Required": true
-        },
-        {
-            "Type": "text",
-            "Label": "Last Name",
-            "Name": "last_name",
-            "Placeholder": "Khan",
-            "Required": true
-        }
-    ],
     "Row2": [
         {
             "Type": "select",
@@ -37,31 +14,6 @@
                 {
                     "Label": "Female",
                     "Value": "female"
-                },
-                {
-                    "Label": "Other",
-                    "Value": "other"
-                }
-            ]
-        },
-        {
-            "Type": "Select",
-            "Label": "Class",
-            "Name": "class",
-            "Placeholder": "Select",
-            "Required": true,
-            "Options": [
-                {
-                    "Label": "1",
-                    "Value": 1
-                },
-                {
-                    "Label": "2",
-                    "Value": 2
-                },
-                {
-                    "Label": "3",
-                    "Value": 3
                 }
             ]
         }
