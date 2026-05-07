@@ -50,3 +50,18 @@ def get_form_layout():
     
     with open("form_layout.json","r") as f:
         return json.dumps(json.load(f))
+    
+def get_supported_field_types():
+    if not os.path.exists("app_config.json"):
+        return EMPTY_STRING
+    
+    with open("app_config.json","r") as f:
+        data = json.load(f)
+
+    if not data:
+        return EMPTY_STRING
+    if "Supported_Input_Fields_Type" not in data:
+        return EMPTY_STRING
+
+    supported = data["Supported_Input_Fields_Type"]
+    return ", ".join("'"+elem+"'" for elem in supported)

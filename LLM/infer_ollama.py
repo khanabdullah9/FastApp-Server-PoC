@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptT
 from langchain_core.output_parsers import JsonOutputParser
 import requests
 
-from utils import get_ollama_conf, log_error, log_info, get_form_layout
+from utils import get_ollama_conf, log_error, log_info, get_form_layout, get_supported_field_types
 
 OLLAMA_CONF = get_ollama_conf()
 POD_ID = OLLAMA_CONF["POD_ID"]
@@ -39,6 +39,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("system","You are a senior UI architect"),
     ("system","You are supposed to design the layout for react based forms and describe them in json."),
     ("system","You are only supposed to return JSON"),
+    ("system",f"Supported field types are {get_supported_field_types()}"),
     few_shot_prompt,
     ("user","{user_prompt}")
 ])

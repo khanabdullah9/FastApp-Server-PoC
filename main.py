@@ -77,3 +77,10 @@ def test_conn_ollama():
 def est_token_count(prompt: Prompt):
     return {"num_tokens": calculate_num_tokens(prompt.text)}
     
+
+@api.post("/generate_mock/")
+def get_mock_response(prompt: Prompt):
+    try:
+        return {'Row1': [{'Type': 'text', 'Label': 'Student Name', 'Name': 'student_name', 'Placeholder': 'Enter Student Name', 'Required': True}, {'Type': 'text', 'Label': 'Roll Number', 'Name': 'roll_number', 'Placeholder': 'Enter Roll Number', 'Required': True}], 'Row2': [{'Type': 'select', 'Label': 'Department', 'Name': 'department', 'Placeholder': 'Select Department', 'Required': True, 'Options': [{'Label': 'Computer Science', 'Value': 'cs'}, {'Label': 'Electronics', 'Value': 'electronics'}, {'Label': 'Mechanical', 'Value': 'mechanical'}]}, {'Type': 'date', 'Label': 'Preferred Date of Visit', 'Name': 'preferred_date_of_visit', 'Placeholder': 'Select Date', 'Required': True}], 'Row3': [{'Type': 'checkbox', 'Label': 'Special Requirements (if any)', 'Name': 'special_requirements', 'Placeholder': 'Enter Special Requirements', 'Required': False}]}
+    except Exception as err:
+        log_error(str(err))
